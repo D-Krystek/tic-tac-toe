@@ -1,35 +1,35 @@
-import tkinter as tk
-from TicTacToe import board 
-class Application(tk.Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.master = master
-        self.pack()
-        self.create_widgets()
+import PySimpleGUI as sg
+#from TicTacToe import board 
 
-    def create_widgets(self):
-        self.hi_there = tk.Button(self)
-        self.hi_there["text"] = str(board[0][0])
-        self.hi_there["command"] = self.say_hi
-        self.hi_there.pack(side="left")
+playerChar = 'X'
 
-        #self.quit = tk.Button(self, text="QUIT", fg="red",
-        #                      command=self.master.destroy)
-        #self.quit.pack(side="bottom")
+sg.theme('Dark Green 5')
+layout = [[sg.Button(' ', key='UpperLeft', size=(4,2)), sg.Button(' ', key='UpperMiddle', size=(4,2)), sg.Button(' ', key='UpperRight', size=(4,2))],
+            [sg.Button(' ', key='MiddleLeft', size=(4,2)), sg.Button(' ', key='MiddleMiddle', size=(4,2)), sg.Button(' ', key='MiddleRight', size=(4,2))],
+            [sg.Button(' ', key='LowerLeft', size=(4,2)), sg.Button(' ', key='LowerMiddle', size=(4,2)), sg.Button(' ', key='LowerRight', size=(4,2))]
+                        ]
+window = sg.Window('Tic-Tac-Toe', layout, finalize=True)
 
-        self.hi_there2 = tk.Button(self)
-        self.hi_there2["text"] = "-"
-        self.hi_there2["command"] = self.say_hi
-        self.hi_there2.pack(side="left")
-
-    def say_hi(self):
-        #print("hi there, everyone!")
-        print(board)
-        if(self.hi_there["text"] != 'X'):
-            self.hi_there["text"] = 'X'
-        else:
-            print("You've already played here...")
-
-root = tk.Tk()
-app = Application(master=root)
-app.mainloop()
+while True: #event loop
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == "Close":
+        break
+    elif event == 'UpperLeft':
+        window['UpperLeft'].update(playerChar)
+    elif event == 'UpperMiddle':
+        window['UpperMiddle'].update(playerChar)
+    elif event == 'UpperRight':
+        window['UpperRight'].update(playerChar)
+    elif event == 'MiddleLeft':
+        window['MiddleLeft'].update(playerChar)
+    elif event == 'MiddleMiddle':
+        window['MiddleMiddle'].update(playerChar)
+    elif event == 'MiddleRight':
+        window['MiddleRight'].update(playerChar)
+    elif event == 'LowerLeft':
+        window['LowerLeft'].update(playerChar)
+    elif event == 'LowerMiddle':
+        window['LowerMiddle'].update(playerChar)
+    elif event == 'LowerRight':
+        window['LowerRight'].update(playerChar)
+        
